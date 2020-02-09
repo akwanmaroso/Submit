@@ -9,5 +9,6 @@ Pembuatan aplikasi ini berguna untuk mengatur keuangan pribadi
 - List fitur app
 - PPT penjelasan app
 - Video singkat pengenalan app
+- Desain simple untuk app
 
 
