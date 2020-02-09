@@ -1,7 +1,13 @@
 # My Application
-- Aplikasi Finansial
+- Aplikasi Finansial ? 
 # Getting Started
 Pembuatan aplikasi ini berguna untuk mengatur keuangan pribadi
-## Fitur
+## Fitur 🤷‍♂️
 -  menghitung kalkulasi dari uang yang masuk 
+## Tugas 🐱‍🏍
+- Tentukan Nama App 
+- List fitur app
+- PPT penjelasan app
+- Video singkat pengenalan app
+
 
