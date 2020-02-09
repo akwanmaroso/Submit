@@ -1,13 +1,14 @@
 const express = require('express');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const app = express();
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
 const morgan = require('morgan');
-const port = process.env.PORT || 4000;
+require('dotenv').config();
+
 
 app.use(morgan('tiny'));
-app.use(dotenv.config);
-app.use(helmet());
+// app.use(helmet());
+const port = process.env.PORT || 4000;
 
 app.get('/', (req, res) => {
   res.send("helo world")
