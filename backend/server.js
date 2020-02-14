@@ -14,12 +14,10 @@ mongoose.connect(
 
 app.use(morgan('tiny'));
 // app.use(helmet());
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 const routes = require('./routes/route')
-app.use('/', routes);
-
-app.get('/', (req, res) => {
-  res.send("helo world")
-})
+app.use('/api/', routes);
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
