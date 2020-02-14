@@ -6,11 +6,15 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-mongoose.connect(
-  process.env.DB_CONNECT, {useNewUrlParser: true}, () => {
-    console.log('connected to db');
-  }
-)
+try {
+  mongoose.connect(
+    process.env.DB_CONNECT, 
+    { useNewUrlParser: true }
+  );
+} catch (error) {
+  console.log(error);
+}
+
 
 app.use(morgan('tiny'));
 // app.use(helmet());
