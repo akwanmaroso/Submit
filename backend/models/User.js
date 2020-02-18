@@ -22,7 +22,7 @@ const userSchema = new Schema({
   },
   money: {
     type: Number,
-    default: null,
+    default: null
   },
   date: {
     type: Date,

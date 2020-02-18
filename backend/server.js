@@ -3,18 +3,8 @@ const express = require('express');
 const app = express();
 // const dotenv = require('dotenv');
 const morgan = require('morgan');
-const mongoose = require('mongoose');
 require('dotenv').config();
-
-try {
-  mongoose.connect(
-    process.env.DB_CONNECT, 
-    { useNewUrlParser: true }
-  );
-} catch (error) {
-  console.log(error);
-}
-
+require('./db/index');
 
 app.use(morgan('tiny'));
 // app.use(helmet());

@@ -15,10 +15,11 @@ exports.createdata = (req, res) => {
     email: req.body.email,
     password: req.body.password,
     nama: req.body.nama,
+    money: req.body.money,
   };
   const rules = {
     username: 'required|min:3',
-    email: 'required',
+    email: 'required|email',
     password: 'required|min:4',
     nama: 'required|min:4',
   };
@@ -42,15 +43,21 @@ exports.createdata = (req, res) => {
     console.log(user);
     res.status(201).send({
       message: 'user berhasil ditambahkan'
-    })
+    });
   } catch (error) {
-    console.log(`Nessage = ${error} ` );
-    
+    console.log(`Message = ${error} ` );
   }
-  // return data;
-
 }
 
 exports.showData = (req, res) => {
-
+  User.findById(req.params.id, (err, data) => {
+    if (err) {
+      res.status(401).send({
+        message: `erorr ${err}`
+      })
+    };
+    res.status(200).send({
+      message:  data
+    });
+  });
 }
