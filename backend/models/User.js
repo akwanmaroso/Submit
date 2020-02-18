@@ -22,8 +22,11 @@ const userSchema = new Schema({
   },
   money: {
     type: Number,
-    required: true
   },
+  date: {
+    type: Date,
+    default: Date.now
+  }
 })
 
 module.exports = mongoose.model("User", userSchema);
