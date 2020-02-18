@@ -61,3 +61,17 @@ exports.showData = (req, res) => {
     });
   });
 }
+
+exports.updateData = (req, res) => {
+  User.findByIdAndUpdate(req.params.id, {$set: req.body}, (err, data) => {
+    if (err) {
+      res.status(401).send({
+        message: err,
+      });
+    }
+    res.status(200).send({
+      data: data,
+      message: 'data berhasil diupdate'
+    })
+  });
+}
