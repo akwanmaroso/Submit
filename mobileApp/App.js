@@ -7,7 +7,7 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
-import Login from './src/login/Login'
+import Login from './src/pages/Login'
 
 class App extends Component {
   render() {
