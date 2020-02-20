@@ -5,8 +5,36 @@ exports.index = (req, res) => {
   res.send('halo');
 }
 
-exports.login = (req, res) => {
+exports.login = async (req, res) => {
+  const data = {
+    username: req.body.username,
+    password: req.body.password
+  };
+  const rules = {
+    username: 'required|min:3',
+    password: 'required|min:4',
+  }
+  const validate = new validatejs(data, rules);
+  if(validate.fails()) {
+    res.status(422).send({
+      errors: {
+        username: validate.errors.first('username'),
+        password: validate.errors.first('password')
+      }
+    });
+  }
   
+  const user = await User.findOne({username: data.username, password: data.password});
+  
+  if (!user) {
+    res.status(401).send({
+      message: 'username dan password salah'
+    })
+  }else {
+      res.status(201).send({
+        message: 'berhasil login'
+      })
+  }
 }
 
 exports.createdata = (req, res) => {
