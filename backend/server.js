@@ -1,11 +1,11 @@
 const express = require('express');
 // const helmet = require('helmet');
 const app = express();
-// const dotenv = require('dotenv');
+const cors = require('cors');
 const morgan = require('morgan');
 require('dotenv').config();
 require('./db/index');
-
+app.use(cors());
 app.use(morgan('tiny'));
 // app.use(helmet());
 app.use(express.json());
