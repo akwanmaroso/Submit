@@ -10,8 +10,9 @@ import {
   Image
 } from 'react-native';
 import Login from './src/pages/Login'
-import NavbarButton from './src/NavbarBtn';
+import NavbarButton from './src/organism/NavbarBtn';
 import Axios from 'axios';
+import NumberFormat from 'react-number-format';
 
 class App extends Component {
   state = {
@@ -29,12 +30,19 @@ class App extends Component {
     return(
       // <Login />
       <View style={{flex: 1}}>
-        <Text>Helo From Home</Text>
-        <View style={{flex: 1}}>
-          <Text>{this.state.user.email}</Text>
-          <Text>{this.state.user.username}</Text>
+        <View style={{ height: 70, justifyContent: 'center', backgroundColor: '#0CB73D',}}>
+          <View style={{ marginHorizontal: 16}}>
+            <Text style={{fontSize: 20}}>Saku-Ku</Text>
+          </View>
         </View>
-        <View style={{backgroundColor: 'blue'}}>
+        {/* content */}
+        <View style={{flex: 1, marginTop: 12, marginHorizontal: 16}}>
+          <View style={{ backgroundColor: 'green', height: 150, justifyContent: 'center', alignItems: 'center', borderRadius: 8}}>
+            <NumberFormat value={this.state.user.money} displayType={'text'} prefix={'Rp '} thousandSeparator={true} renderText={value => <Text style={{fontSize: 30, color: 'white'}}>{value}</Text>}/>
+          </View>
+        </View>
+        {/* navbar */}
+        <View style={{width:'100%', margin: 0, padding:0}}>
           <NavbarButton />
         </View>
       </View>
