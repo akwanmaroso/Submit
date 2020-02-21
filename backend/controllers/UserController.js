@@ -85,7 +85,7 @@ exports.showData = (req, res) => {
       })
     };
     res.status(200).send({
-      message:  data
+      data
     });
   });
 }
