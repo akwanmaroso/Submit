@@ -11,43 +11,56 @@ import {
 } from 'react-native';
 import Login from './src/pages/Login'
 import NavbarButton from './src/organism/NavbarBtn';
-import Axios from 'axios';
-import NumberFormat from 'react-number-format';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialCommunityIcons } from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import Home from './src/pages/Home'
 class App extends Component {
-  state = {
-    user: {}
-  }
-
-  async componentDidMount () {
-    const user = await Axios.get('http://10.0.2.2:4900/api/5e45fd1272c2321d88ef4c6d/showdata');
-    this.setState({
-      user: user.data.data
-    })
-    console.log(this.state.user); 
-  }
   render() {
+    const Tab = createBottomTabNavigator();
     return(
-      // <Login />
-      <View style={{flex: 1}}>
-        <View style={{ height: 70, justifyContent: 'center', backgroundColor: '#0CB73D',}}>
-          <View style={{ marginHorizontal: 16}}>
-            <Text style={{fontSize: 20}}>Saku-Ku</Text>
-          </View>
-        </View>
-        {/* content */}
-        <View style={{flex: 1, marginTop: 12, marginHorizontal: 16}}>
-          <View style={{ backgroundColor: 'green', height: 150, justifyContent: 'center', alignItems: 'center', borderRadius: 8}}>
-            <NumberFormat value={this.state.user.money} displayType={'text'} prefix={'Rp '} thousandSeparator={true} renderText={value => <Text style={{fontSize: 30, color: 'white'}}>{value}</Text>}/>
-          </View>
-        </View>
-        {/* navbar */}
-        <View style={{width:'100%', margin: 0, padding:0}}>
-          <NavbarButton />
-        </View>
-      </View>
+        // <Login />
+        <NavigationContainer style={{width:'100%', margin: 0, padding:0}}>
+        <Tab.Navigator
+            initialRouteName="Feed"
+            tabBarOptions={{
+              activeTintColor: '#e91e63',
+            }}
+          >
+            <Tab.Screen
+              name="Home"
+              component={Home}
+              options={{
+                tabBarLabel: 'Home',
+                tabBarIcon: ({ color, size }) => (
+                  <MaterialCommunityIcons name="home" color={color} size={size} />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="Notifications"
+              component={Login}
+              options={{
+                tabBarLabel: 'Updates',
+                tabBarIcon: ({ color, size }) => (
+                  <MaterialCommunityIcons name="home" color={color} size={size} />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="Account"
+              component={Home}
+              options={{
+                tabBarLabel: 'Profile',
+                tabBarIcon: ({ color, size }) => (
+                  <MaterialCommunityIcons name="home" color={color} size={size} />
+                ),
+              }}
+            />
+          </Tab.Navigator>
+        </NavigationContainer>
     )
   }
 }
-
 export default App;
