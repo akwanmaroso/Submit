@@ -13,19 +13,28 @@ import {
 import Axios from 'axios';
 
 export default class Login extends Component {
-  state = {
-    username: '',
-    password: '',
+  constructor(props) {
+    super(props);
+    state = {
+      username: '',
+      password: '',
+    }
   }
+  
   handleLogin = async() => {
+    console.log(this.props);
     try {
       const login = await Axios.post('http://10.0.2.2:4900/api/login', {
         username: this.state.username,
         password: this.state.password
       });
       console.log(login.data.data);
+      this.props.handleStateLogin(true);
+      // console.log(this.props);
+      alert('Berhasil Login');
     } catch (err) {
       console.log(err.message);
+      alert('Gagal Login');
     }
   }
   render() {
@@ -51,7 +60,10 @@ export default class Login extends Component {
                 />
             </View>
             <View style={{ alignSelf: 'center', marginTop: 45 }}>
-              <TouchableOpacity style={{ backgroundColor: '#ffffff', padding: 16, borderRadius: 25}} onPress={() => this.handleLogin()}>
+              <TouchableOpacity 
+              style={{ backgroundColor: '#ffffff', padding: 16, borderRadius: 25}} 
+              onPress={() => this.handleLogin()}
+              >
                 <Text style={{ fontSize: 16, color: '#07AC69', textAlign: 'center', paddingHorizontal: 46 }}>Login</Text>
               </TouchableOpacity>
             </View>
