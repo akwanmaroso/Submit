@@ -11,6 +11,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import Axios from 'axios';
+// import {Button} from 'reas';
 
 export default class Login extends Component {
   constructor(props) {
@@ -22,15 +23,13 @@ export default class Login extends Component {
   }
   
   handleLogin = async() => {
-    console.log(this.props);
     try {
-      const login = await Axios.post('http://10.0.2.2:4900/api/login', {
+      const login = await Axios.post('https://backend-sakuku.herokuapp.com/api/login', {
         username: this.state.username,
         password: this.state.password
       });
-      console.log(login.data.data);
-      this.props.handleStateLogin(true);
-      // console.log(this.props);
+      const user = login.data.data;
+      this.props.handleStateLogin(true, user);
       alert('Berhasil Login');
     } catch (err) {
       console.log(err.message);
@@ -63,6 +62,7 @@ export default class Login extends Component {
               <TouchableOpacity 
               style={{ backgroundColor: '#ffffff', padding: 16, borderRadius: 25}} 
               onPress={() => this.handleLogin()}
+              underlayCorlor={'gray'}
               >
                 <Text style={{ fontSize: 16, color: '#07AC69', textAlign: 'center', paddingHorizontal: 46 }}>Login</Text>
               </TouchableOpacity>

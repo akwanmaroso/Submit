@@ -9,8 +9,7 @@ import {
   StatusBar,
   Image
 } from 'react-native';
-import Login from './src/pages/Login'
-import NavbarButton from './src/organism/NavbarBtn';
+import Login from './src/pages/Login';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -20,18 +19,20 @@ class App extends Component {
   constructor(props) {
     super(props);
       this.state ={
-        isLogin: false
+        isLogin: false,
       }
       this.handleStateLogin = this.handleStateLogin
   }
 
-  handleStateLogin = (text) => {
+  handleStateLogin = (text, data) => {
     this.setState({
-      isLogin: text
-    })
+      isLogin: text,
+      data: data
+    });
   }
-  
+
   render() {
+    // console.log(this.state.data);
     const Tab = createBottomTabNavigator();
     { console.log(this.state.isLogin) }
     if (!this.state.isLogin) {
@@ -44,7 +45,9 @@ class App extends Component {
     }
     return(
         // <Login />
-        <NavigationContainer style={{width:'100%', margin: 0, padding:0}}>
+        <NavigationContainer style={{width:'100%', margin: 0, padding:0}}
+          data={this.state.data}
+        >
         <Tab.Navigator
             initialRouteName="Saku"
             tabBarOptions={{
@@ -63,7 +66,7 @@ class App extends Component {
             />
             <Tab.Screen
               name="Notifications"
-              component={Login}
+              component={Home}
               options={{
                 tabBarLabel: 'Updates',
                 tabBarIcon: ({ color, size }) => (
