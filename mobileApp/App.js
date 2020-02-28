@@ -19,7 +19,7 @@ class App extends Component {
   constructor(props) {
     super(props);
       this.state ={
-        isLogin: false,
+        isLogin: true,
       }
       this.handleStateLogin = this.handleStateLogin
   }
@@ -44,23 +44,24 @@ class App extends Component {
       )
     }
     return(
-        // <Login />
-        <NavigationContainer style={{width:'100%', margin: 0, padding:0}}
-          data={this.state.data}
-        >
+        // <Login />  
+      <NavigationContainer>
         <Tab.Navigator
             initialRouteName="Saku"
             tabBarOptions={{
-              activeTintColor: '#e91e63',
-            }}
-          >
+              activeTintColor: 'black',
+              inactiveBackgroundColor: '#07AC69',
+              activeBackgroundColor: '#07AC69',
+              inactiveTintColor: 'white',
+              }}
+            >
             <Tab.Screen
               name="Home"
               component={Home}
               options={{
                 tabBarLabel: 'Home',
                 tabBarIcon: ({ color, size }) => (
-                  <MaterialCommunityIcons name="home" color={color} size={size} />
+                  <MaterialCommunityIcons name="home" color={color} size={size}/>
                 ),
               }}
             />
@@ -68,9 +69,9 @@ class App extends Component {
               name="Notifications"
               component={Home}
               options={{
-                tabBarLabel: 'Updates',
+                tabBarLabel: 'Riwayat',
                 tabBarIcon: ({ color, size }) => (
-                  <MaterialCommunityIcons name="home" color={color} size={size} />
+                  <MaterialCommunityIcons name="calendar" color={color} size={size} />
                 ),
               }}
             />
@@ -78,9 +79,9 @@ class App extends Component {
               name="Account"
               component={Home}
               options={{
-                tabBarLabel: 'Profile',
+                tabBarLabel: 'Akun',
                 tabBarIcon: ({ color, size }) => (
-                  <MaterialCommunityIcons name="home" color={color} size={size} />
+                  <MaterialCommunityIcons name="account" color={color} size={size} />
                 ),
               }}
             />
